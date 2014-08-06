@@ -1,0 +1,8 @@
+---
+- hosts: all
+
+  tasks:
+
+    - include: core.yml
+
+  handlers:

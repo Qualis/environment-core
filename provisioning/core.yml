@@ -1,0 +1,41 @@
+    # run
+
+    - name: Install Timezone data
+      apt: pkg=tzdata
+      sudo: yes
+      tags:
+      - core
+      - run
+
+    - name: Set timezone
+      copy: content=Australia/Melbourne dest=/etc/timezone
+      sudo: yes
+      tags:
+      - core
+      - run
+
+    - name: Set Local Time
+      shell: dpkg-reconfigure --frontend noninteractive tzdata
+      sudo: yes
+      tags:
+      - core
+      - run
+
+    - name: Install NTP
+      apt: pkg={{ item }}
+      with_items:
+        - ntp
+        - ntpdate
+      sudo: yes
+      tags:
+      - core
+      - run
+
+    # development
+
+    - name: Install avahi
+      apt: pkg=avahi-daemon
+      sudo: yes
+      tags:
+      - core
+      - development
