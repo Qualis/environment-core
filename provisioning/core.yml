@@ -1,5 +1,29 @@
     # run
 
+    - name: Update apt cache
+      apt: update_cache=yes
+      sudo: yes
+      tags:
+      - core
+      - provision
+
+    - name: uri ansible module requirements
+      apt: pkg={{ item }}
+      sudo: yes
+      with_items:
+      - libpython2.7-stdlib
+      - python-httplib2
+      tags:
+      - core
+      - provision
+
+    - name: Install curl
+      apt: pkg=curl
+      sudo: yes
+      tags:
+      - core
+      - provision
+
     - name: Install Timezone data
       apt: pkg=tzdata
       sudo: yes
