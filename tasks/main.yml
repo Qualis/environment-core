@@ -63,3 +63,20 @@
       tags:
       - core
       - development
+
+    - name: Install vim
+      apt: pkg=vim
+      sudo: yes
+      tags:
+      - core
+      - development
+
+    - name: Update .vimrc
+      lineinfile: dest=~/.vimrc line="{{ item }}" create=yes
+      with_items:
+      - :set tabstop=4
+      - :set shiftwidth=4
+      - :set expandtab
+      tags:
+      - core
+      - development
