@@ -74,8 +74,8 @@
     - name: Update .vimrc
       lineinfile: dest=~/.vimrc line="{{ item }}" create=yes
       with_items:
-      - :set tabstop=4
-      - :set shiftwidth=4
+      - :set tabstop=2
+      - :set shiftwidth=2
       - :set expandtab
       tags:
       - core
