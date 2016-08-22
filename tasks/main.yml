@@ -2,14 +2,14 @@
 
     - name: Update apt cache
       apt: update_cache=yes
-      sudo: yes
+      become: yes
       tags:
       - core
       - provision
 
     - name: uri ansible module requirements
       apt: pkg={{ item }}
-      sudo: yes
+      become: yes
       with_items:
       - libpython2.7-stdlib
       - python-httplib2
@@ -19,28 +19,28 @@
 
     - name: Install curl
       apt: pkg=curl
-      sudo: yes
+      become: yes
       tags:
       - core
       - provision
 
     - name: Install Timezone data
       apt: pkg=tzdata
-      sudo: yes
+      become: yes
       tags:
       - core
       - run
 
     - name: Set timezone
       copy: content=Australia/Melbourne dest=/etc/timezone
-      sudo: yes
+      become: yes
       tags:
       - core
       - run
 
     - name: Set Local Time
       shell: dpkg-reconfigure --frontend noninteractive tzdata
-      sudo: yes
+      become: yes
       tags:
       - core
       - run
@@ -50,7 +50,14 @@
       with_items:
         - ntp
         - ntpdate
-      sudo: yes
+      become: yes
+      tags:
+      - core
+      - run
+
+    - name: Install PCP
+      apt: pkg=pcp
+      become: yes
       tags:
       - core
       - run
@@ -59,14 +66,14 @@
 
     - name: Install avahi
       apt: pkg=avahi-daemon
-      sudo: yes
+      become: yes
       tags:
       - core
       - development
 
     - name: Install vim
       apt: pkg=vim
-      sudo: yes
+      become: yes
       tags:
       - core
       - development
