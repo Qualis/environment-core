@@ -58,6 +58,8 @@
     - name: Install PCP
       apt: pkg=pcp
       become: yes
+      notify:
+      - Change PCP directory ownership
       tags:
       - core
       - run
