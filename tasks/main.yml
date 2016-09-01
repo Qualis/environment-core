@@ -80,9 +80,27 @@
       - core
       - development
 
+    - name: Setup paths for vim
+      file: path={{ item }} state=directory
+      with_items:
+      - ~/.vim/autoload
+      - ~/.vim/bundle
+      tags:
+      - core
+      - development
+
+    - name: Install pathogen
+      get_url: url=https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim dest=~/.vim/autoload/pathogen.vim
+      tags:
+      - core
+      - development
+
     - name: Update .vimrc
       lineinfile: dest=~/.vimrc line="{{ item }}" create=yes
       with_items:
+      - execute pathogen#infect()
+      - syntax on
+      - filetype plugin indent on
       - :set tabstop=2
       - :set shiftwidth=2
       - :set expandtab
