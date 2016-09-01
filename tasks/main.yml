@@ -73,6 +73,13 @@
       - core
       - development
 
+    - name: Install git
+      apt: pkg=git-core
+      tags:
+      - core
+      - development
+      become: yes
+
     - name: Install vim
       apt: pkg=vim
       become: yes
@@ -106,6 +113,18 @@
       - :set expandtab
       - :set nobackup
       - :set noswapfile
+      tags:
+      - core
+      - development
+
+    - name: Install NERD tree
+      git: repo=https://github.com/scrooloose/nerdtree.git dest=~/.vim/bundle/nerdtree
+      tags:
+      - core
+      - development
+
+    - name: Install ctrlp.vim
+      git: repo=https://github.com/ctrlpvim/ctrlp.vim.git dest=~/.vim/bundle/ctrlp
       tags:
       - core
       - development
