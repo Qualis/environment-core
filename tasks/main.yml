@@ -17,6 +17,25 @@
       - core
       - provision
 
+    - name: Install python-pip
+      apt: pkg=python-pip update_cache=yes
+      become: yes
+      tags:
+      - core
+      - provision
+
+    - name: Install python modules to support SNI SSL requests
+      pip: name={{ item }}
+      become: yes
+      with_items:
+      - urllib3
+      - pyopenssl
+      - ndg-httpsclient
+      - pyasn1
+      tags:
+      - core
+      - provision
+
     - name: Install curl
       apt: pkg=curl
       become: yes
