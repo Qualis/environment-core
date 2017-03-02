@@ -77,8 +77,13 @@
     - name: Install PCP
       apt: pkg=pcp
       become: yes
-      notify:
-      - Change PCP directory ownership
+      tags:
+      - core
+      - run
+
+    - name: Change PCP directory ownership
+      file: path=/var/log/pcp/pmmgr state=directory owner=pcp group=pcp
+      become: yes
       tags:
       - core
       - run
