@@ -132,6 +132,7 @@
       - {repo: "https://github.com/scrooloose/nerdtree.git", name: nerdtree}
       - {repo: "https://github.com/ctrlpvim/ctrlp.vim.git", name: ctrlp}
       - {repo: "https://github.com/ntpeters/vim-better-whitespace.git", name: vim-better-whitespace}
+      - {repo: "https://github.com/airblade/vim-gitgutter.git", name: vim-gitgutter}
       tags:
       - core
       - development
