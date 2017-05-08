@@ -32,6 +32,13 @@
       - core
       - provision
 
+    - name: Upgrade pip
+      pip: name=pip extra_args=--upgrade
+      become: yes
+      tags:
+      - core
+      - provision
+
     - name: Install python modules to support SNI SSL requests
       pip: name={{ item }}
       become: yes
