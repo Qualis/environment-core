@@ -4,9 +4,6 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box_url = "https://vagrantcloud.com/ubuntu/trusty64"
-  config.vm.box = "ubuntu/trusty64"
-
   config.vm.hostname = "vagrant-core"
   config.vm.network :private_network, type: "dhcp"
 
@@ -19,7 +16,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.cache.scope = :machine
   end
 
-  config.vm.provider :virtualbox do |vb|
+  config.vm.provider :virtualbox do |vb, override|
+    override.vm.box_url = "https://vagrantcloud.com/ubuntu/trusty64"
+    override.vm.box = "ubuntu/trusty64"
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
+
+  config.vm.provider :docker do |d|
+    d.image = "tknerr/baseimage-ubuntu:14.04"
+    d.has_ssh = true
   end
 end

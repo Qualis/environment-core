@@ -17,9 +17,17 @@
       - core
       - provision
 
-    - name: Install python-pip
-      apt: pkg=python-pip update_cache=yes
+    - name: Install python
+      apt: pkg={{ item }} update_cache=yes
       become: yes
+      with_items:
+      - python
+      - python-pip
+      - python-dev
+      - python-openssl
+      - build-essential
+      - libssl-dev
+      - libffi-dev
       tags:
       - core
       - provision
