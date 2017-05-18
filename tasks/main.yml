@@ -7,20 +7,13 @@
       - core
       - provision
 
-    - name: uri ansible module requirements
+    - name: Install common dependencies
       apt: pkg={{ item }}
       become: yes
       with_items:
       - libpython2.7-stdlib
       - python-httplib2
-      tags:
-      - core
-      - provision
-
-    - name: Install python
-      apt: pkg={{ item }} update_cache=yes
-      become: yes
-      with_items:
+      - apt-transport-https
       - python
       - python-pip
       - python-dev
