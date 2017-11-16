@@ -47,6 +47,9 @@
     - name: Install tmux terminal multiplexer
       apt: pkg=tmux
       become: yes
+      tags:
+      - core
+      - provision
 
     - name: Install curl
       apt: pkg=curl
