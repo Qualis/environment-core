@@ -32,14 +32,9 @@
       - core
       - provision
 
-    - name: Install python modules to support SNI SSL requests
-      pip: name={{ item }}
+    - name: Install python support for SNI SSL requests
+      pip: name=requests[security]
       become: yes
-      with_items:
-      - urllib3
-      - pyopenssl
-      - ndg-httpsclient
-      - pyasn1
       tags:
       - core
       - provision
